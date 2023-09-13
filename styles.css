@@ -17,22 +17,52 @@ body {
 
 .cellprops-actions-cont {
   height: 3rem;
-  background-color: antiquewhite;
+  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+/* cell prop actions container ke ander jo bhi elements hai unko yeh styles apply hoge */
+/* because every element inside the cellprops actions cont is a span then we cannot set its margin and padding so we change its display to inline block */
+.cellprops-actions-cont > * {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+
+.cellprops-actions-cont > select {
+  outline: none;
+  border-radius: 100px;
+  border: none;
+}
+
+.font-family-prop {
+  padding: 0.2rem;
+  outline: none;
+  border-radius: 2px;
+  border: none;
+}
+
+.font-size-prop {
+  padding: 0.2rem;
+  outline: none;
+  border-radius: 2px;
+  border: none;
 }
 
 .formula-actions-cont {
   height: 3rem;
-  background-color: cyan;
+  background-color: lightcyan;
 }
 
 .sheet-actions-cont {
   height: 3rem;
-  background-color: red;
+  background-color: lightsalmon;
 }
 
 .grid-cont {
   height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
-  background-color: blue;
 }
 
 .page-action {
