@@ -4,6 +4,9 @@ let col = 26;
 console.log("hello")
 
 let addressColCont = document.querySelector(".address-col-cont");
+let addressRowCont = document.querySelector(".address-row-cont");
+let gridCont = document.querySelector(".cells-cont")
+
 for (let i = 0; i < row; i++) {
   let addressCol = document.createElement("div");
   addressCol.setAttribute("class", "address-col");
@@ -11,7 +14,6 @@ for (let i = 0; i < row; i++) {
   addressColCont.appendChild(addressCol);
 }
 
-let addressRowCont = document.querySelector(".address-row-cont");
 for (let i = 0; i < row; i++) {
   let addressRow = document.createElement("div");
   addressRow.setAttribute("class", "address-row");
@@ -19,11 +21,15 @@ for (let i = 0; i < row; i++) {
   addressRowCont.appendChild(addressRow);
 }
 
-let gridCont = document.querySelector(".cells-cont")
-for (let i = 0; i < 100; i++ ){
-  for (let j = 0; j < 26; j++){
-    const individualCell = document.createElement("div")
-    individualCell.setAttribute("class", "cell")
-    gridCont.appendChild(individualCell)
+for (let i = 0; i < row; i++ ){
+
+  const rowCont = document.createElement("div")
+  rowCont.setAttribute("class", "row-cont")
+  for (let j = 0; j < col; j++){
+    const cell = document.createElement("div")
+    cell.setAttribute("class", "cell")
+    rowCont.appendChild(cell)
   }
+
+  gridCont.appendChild(rowCont)
 }
