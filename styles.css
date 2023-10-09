@@ -136,7 +136,7 @@ body {
   z-index: 4;
 }
 .address-col-cont {
-  position: sticky;
+  /* position: sticky; */
   top: 2rem;
   left: 0;
 }
