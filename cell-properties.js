@@ -1,5 +1,5 @@
 let sheetDB = []
-
+//creating a sheetDB for storing every cell's properties 
 for(let i =0; i < row; i++){
     let sheetRow = []
     for(let j = 0; j < col; j++){
