@@ -19,6 +19,25 @@ for(let i =0; i < row; i++){
 }
 console.log(sheetDB)
 
+// for(let i =0; i < row; i++){
+//     let sheetRow = []
+//     for(let j = 0; j < col; j++){
+//         let cellProp = {
+//             bold: false,
+//             italic: false,
+//             underline: false,
+//             alignment: "left",
+//             fontFamily: "monospace",
+//             fontSize: "14",
+//             fontColor: "#000000",
+//             BGcolor: "#000000",  // Just for indication purpose,
+//         }
+//         sheetRow.push(cellProp)
+//     }
+//     sheetDB.push(sheetRow)
+// }
+// console.log(sheetDB)
+
 //selectors
 let bold = document.querySelector(".bold");
 let italic = document.querySelector(".italic");
