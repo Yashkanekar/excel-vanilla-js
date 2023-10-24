@@ -12,6 +12,7 @@ for (let i = 0; i < row; i++) {
       fontSize: "14",
       fontColor: "#000000",
       BGcolor: "#000000", // Just for indication purpose,
+      value:"",
     };
     sheetRow.push(cellProp);
   }
