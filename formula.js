@@ -7,7 +7,12 @@ for(let i = 0; i < row; i++){
             let [activecell, cellProp] = getCellAndCellProp(address)
             let enteredData = activecell.innerText
 
+            if ( enteredData === cellProp.value ) return
+            // if data modifies remove P - C relation, formula empty, update children with new harcoded(modified) value
             cellProp.value = enteredData
+            removeChildFromParent(cellProp.formula)
+            cellProp.formula = ""
+            updateChildrenCells(address)
             // console.log(cellProp);
         })
     }
@@ -26,11 +31,31 @@ formulaBar.addEventListener("keydown", (e)=> {
         let evaluatedValue = evaluateFormula(inputFormula)
 
         //call the function to set evaluated value inside the cell and the input formula inside the formula bar
-        setCellUIandCellProp(evaluatedValue, inputFormula)
+        setCellUIandCellProp(evaluatedValue, inputFormula, address)
         addChildToParent(inputFormula)
+        updateChildrenCells(address)
         console.log(sheetDB);
     }
 })
+
+// function to update all the children of the parent cell if the parent cell formula changes.
+function updateChildrenCells(parentAddress) {
+
+  let [parentCell, parentCellProp] = getCellAndCellProp(parentAddress)
+  let children = parentCellProp.children
+
+  // looping over each and every child in the parent's children array
+  for(let i = 0; i < children.length; i++){
+    let childAddress = children[i]
+    let [childCell, childCellProp] = getCellAndCellProp(childAddress)
+    let childFormula = childCellProp.formula 
+
+    let evaluatedValue = evaluateFormula(childFormula)
+    setCellUIandCellProp(evaluatedValue, childFormula, childAddress)
+    updateChildrenCells(childAddress); // recursively calling the function until all the children of childrens are updated 
+  }
+}
+
 
 function addChildToParent(formula){
     let encodedFormula = formula.split(" ")
@@ -73,8 +98,7 @@ function evaluateFormula(formula){
     return eval(decodedFormula)
 }
 
-function setCellUIandCellProp(evaluatedValue, formula){
-    let address = addressBar.value
+function setCellUIandCellProp(evaluatedValue, formula, address){
     let [cell, cellProp] = getCellAndCellProp(address)
 
     //set cell UI
