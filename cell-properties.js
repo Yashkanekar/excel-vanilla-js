@@ -20,7 +20,7 @@ for (let i = 0; i < row; i++) {
   }
   sheetDB.push(sheetRow);
 }
-console.log(sheetDB);
+
 
 //selectors
 let bold = document.querySelector(".bold");
