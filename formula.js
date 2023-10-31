@@ -19,7 +19,7 @@ for (let i = 0; i < row; i++) {
 }
 
 let formulaBar = document.querySelector(".formula-bar");
-formulaBar.addEventListener("keydown", (e) => {
+formulaBar.addEventListener("keydown", async (e) => {
   let inputFormula = formulaBar.value;
   if (e.key === "Enter" && inputFormula) {
     //If change in formula then break the old P-C relationship, evaluate new formula, add new P-C relnship
@@ -28,17 +28,26 @@ formulaBar.addEventListener("keydown", (e) => {
     if (inputFormula !== cellProp.address)
       removeChildFromParent(cellProp.formula);
 
-    
+
     addChildToGraphComponent(inputFormula, address);
-    
+
     //checking for cycles in formula
-    let isCyclic = isGraphCyclic(graphComponentMatrix);
-    if (isCyclic === true) {
-        alert("Your formula is cyclic");
+    let cycleResponse = isGraphCyclic(graphComponentMatrix); // "cycleResponse has the array containing the row number and col no of the cell from where the cycle has started"
+    if (cycleResponse) {
+        // alert("Your formula is cyclic");
+
+        let response =  confirm("Your formula is cyclic. Do you want to trace your path?")
+        // as long as the user says ok to track the path again, keep on tracing the path
+        while(response === true){
+          await isGraphCyclicTracePath(graphComponentMatrix, cycleResponse);
+          response =  confirm("Do you want to trace your path?")     
+        }
+
+
         removeChildFromGraphComponent(inputFormula, address) // if we find a cycle then need to remove the p->c relationship
         return; //returning coz we dont wanna execute the following lines as there is a cycle in the formula
-    }
-    
+    }  
+
     let evaluatedValue = evaluateFormula(inputFormula);
 
     //call the function to set evaluated value inside the cell and the input formula inside the formula bar

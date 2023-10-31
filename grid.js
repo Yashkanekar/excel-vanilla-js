@@ -16,15 +16,15 @@ for (let i = 0; i < row; i++) {
 for (let i = 0; i < col; i++) {
   let addressRow = document.createElement("div");
   addressRow.setAttribute("class", "address-row");
-  addressRow.innerText = String.fromCharCode(65+i);
+  addressRow.innerText = String.fromCharCode(65 + i);
   addressRowCont.appendChild(addressRow);
 }
 
-for (let i = 0; i < row; i++ ){
+for (let i = 0; i < row; i++) {
 
   const rowCont = document.createElement("div")
   rowCont.setAttribute("class", "row-cont")
-  for (let j = 0; j < col; j++){
+  for (let j = 0; j < col; j++) {
     const cell = document.createElement("div")
     cell.setAttribute("class", "cell")
     cell.setAttribute("contenteditable", "true")
@@ -32,15 +32,15 @@ for (let i = 0; i < row; i++ ){
     cell.setAttribute("rid", i)
     cell.setAttribute("cid", j)
     rowCont.appendChild(cell)
-    addListenerForAddressBarDisplay(cell,i,j)
+    addListenerForAddressBarDisplay(cell, i, j)
   }
   gridCont.appendChild(rowCont)
 }
 
-function addListenerForAddressBarDisplay(cell, i, j){
-  cell.addEventListener("click", (e)=>{
-    let rowID = i+1;
-    let colID = String.fromCharCode(65+j)
+function addListenerForAddressBarDisplay(cell, i, j) {
+  cell.addEventListener("click", (e) => {
+    let rowID = i + 1;
+    let colID = String.fromCharCode(65 + j)
     addressBar.value = `${colID}${rowID}`
   })
 }
