@@ -14,6 +14,9 @@ addSheetButton.addEventListener("click", () => {
   `;
 
   sheetsFolderCont.appendChild(sheet);
+  sheet.scrollIntoView()
+
+
   createSheetDB();
   createGraphComponentMatrix();
   handleSheetActiveness(sheet); // this sheet takes in the above created sheet and makes that sheet active in the UI
