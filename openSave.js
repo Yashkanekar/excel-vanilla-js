@@ -10,4 +10,5 @@ downloadBtn.addEventListener("click", (e)=> {
   a.download = "SheetData.json"
   a.click()
   
+  console.log(a)
 })
