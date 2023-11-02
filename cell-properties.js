@@ -1,6 +1,10 @@
-let collectedSheetDB = []
-let collectedGraphComponentMatrix = []
+let collectedSheetDB = [];
+let sheetDB = [];
 
+{
+  let addSheetButton = document.querySelector(".sheet-add-icon");
+  addSheetButton.click(); // adding the default sheet 1 when page load programatically
+}
 // let sheetDB = [];
 //creating a sheetDB for storing every cell's properties
 // for (let i = 0; i < row; i++) {
@@ -23,7 +27,6 @@ let collectedGraphComponentMatrix = []
 //   }
 //   sheetDB.push(sheetRow);
 // }
-
 
 //selectors
 let bold = document.querySelector(".bold");
@@ -202,9 +205,9 @@ function addListenerToAttachCellProperties(cell) {
         break;
     }
 
-    let formulaBar = document.querySelector(".formula-bar")
+    let formulaBar = document.querySelector(".formula-bar");
     formulaBar.value = cellProp.formula;
-    cell.value = cellProp.value;
+    cell.innerText = cellProp.value;
   });
 }
 
@@ -225,8 +228,6 @@ function decodeRIDCIDFromAddress(address) {
 
   return [rid, cid];
 }
-
-
 
 //flow->
 // first create sheetDB and assign it to every cell

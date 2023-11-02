@@ -3,8 +3,8 @@ let col = 26;
 
 let addressColCont = document.querySelector(".address-col-cont");
 let addressRowCont = document.querySelector(".address-row-cont");
-let gridCont = document.querySelector(".cells-cont")
-let addressBar = document.querySelector(".address-bar")
+let gridCont = document.querySelector(".cells-cont");
+let addressBar = document.querySelector(".address-bar");
 
 for (let i = 0; i < row; i++) {
   let addressCol = document.createElement("div");
@@ -21,29 +21,25 @@ for (let i = 0; i < col; i++) {
 }
 
 for (let i = 0; i < row; i++) {
-
-  const rowCont = document.createElement("div")
-  rowCont.setAttribute("class", "row-cont")
+  const rowCont = document.createElement("div");
+  rowCont.setAttribute("class", "row-cont");
   for (let j = 0; j < col; j++) {
-    const cell = document.createElement("div")
-    cell.setAttribute("class", "cell")
-    cell.setAttribute("contenteditable", "true")
-    cell.setAttribute("spellcheck", "false")
-    cell.setAttribute("rid", i)
-    cell.setAttribute("cid", j)
-    rowCont.appendChild(cell)
-    addListenerForAddressBarDisplay(cell, i, j)
+    const cell = document.createElement("div");
+    cell.setAttribute("class", "cell");
+    cell.setAttribute("contenteditable", "true");
+    cell.setAttribute("spellcheck", "false");
+    cell.setAttribute("rid", i);
+    cell.setAttribute("cid", j);
+    rowCont.appendChild(cell);
+    addListenerForAddressBarDisplay(cell, i, j);
   }
-  gridCont.appendChild(rowCont)
+  gridCont.appendChild(rowCont);
 }
 
 function addListenerForAddressBarDisplay(cell, i, j) {
   cell.addEventListener("click", (e) => {
     let rowID = i + 1;
-    let colID = String.fromCharCode(65 + j)
-    addressBar.value = `${colID}${rowID}`
-  })
+    let colID = String.fromCharCode(65 + j);
+    addressBar.value = `${colID}${rowID}`;
+  });
 }
-
-let firstCell = document.querySelector(".cell")
-firstCell.click()

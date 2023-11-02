@@ -28,25 +28,25 @@ formulaBar.addEventListener("keydown", async (e) => {
     if (inputFormula !== cellProp.address)
       removeChildFromParent(cellProp.formula);
 
-
     addChildToGraphComponent(inputFormula, address);
 
     //checking for cycles in formula
     let cycleResponse = isGraphCyclic(graphComponentMatrix); // "cycleResponse has the array containing the row number and col no of the cell from where the cycle has started"
     if (cycleResponse) {
-        // alert("Your formula is cyclic");
+      // alert("Your formula is cyclic");
 
-        let response =  confirm("Your formula is cyclic. Do you want to trace your path?")
-        // as long as the user says ok to track the path again, keep on tracing the path
-        while(response === true){
-          await isGraphCyclicTracePath(graphComponentMatrix, cycleResponse);
-          response =  confirm("Do you want to trace your path?")     
-        }
+      let response = confirm(
+        "Your formula is cyclic. Do you want to trace your path?"
+      );
+      // as long as the user says ok to track the path again, keep on tracing the path
+      while (response === true) {
+        await isGraphCyclicTracePath(graphComponentMatrix, cycleResponse);
+        response = confirm("Do you want to trace your path?");
+      }
 
-
-        removeChildFromGraphComponent(inputFormula, address) // if we find a cycle then need to remove the p->c relationship
-        return; //returning coz we dont wanna execute the following lines as there is a cycle in the formula
-    }  
+      removeChildFromGraphComponent(inputFormula, address); // if we find a cycle then need to remove the p->c relationship
+      return; //returning coz we dont wanna execute the following lines as there is a cycle in the formula
+    }
 
     let evaluatedValue = evaluateFormula(inputFormula);
 
@@ -66,13 +66,11 @@ function addChildToGraphComponent(formula, childAddress) {
     let asciiValue = encodedFormula[i].charCodeAt(0);
     if (asciiValue >= 65 && asciiValue <= 90) {
       let [prid, pcid] = decodeRIDCIDFromAddress(encodedFormula[i]);
-    //   console.log(prid, crid);
+      //   console.log(prid, crid);
       graphComponentMatrix[prid][pcid].push([crid, ccid]); // push the children(dependent cells) into the parents graphcomponent address
     }
   }
 }
-
-
 
 function removeChildFromGraphComponent(formula, childAddress) {
   let [crid, ccid] = decodeRIDCIDFromAddress(childAddress);

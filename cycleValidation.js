@@ -11,15 +11,16 @@
 // ]
 
 // storage 2D matrix
+let collectedGraphComponentMatrix = [];
 let graphComponentMatrix = [];
 
-for (let i = 0; i < row; i++) {
-  let row = []; // 100 rows
-  for (let j = 0; j < col; j++) {
-    row.push([]); // push 26 arrays in each of the 100 rows which represents a cell
-  }
-  graphComponentMatrix.push(row); // push each of the 100 with 26 arrays (representing cells) inside the outer main array
-}
+// for (let i = 0; i < row; i++) {
+//   let row = []; // 100 rows
+//   for (let j = 0; j < col; j++) {
+//     row.push([]); // push 26 arrays in each of the 100 rows which represents a cell
+//   }
+//   graphComponentMatrix.push(row); // push each of the 100 with 26 arrays (representing cells) inside the outer main array
+// }
 
 function isGraphCyclic(graphComponentMatrix) {
   let visited = []; // Node(cell) visit trace
@@ -48,11 +49,11 @@ function isGraphCyclic(graphComponentMatrix) {
           dfsVisited
         ); // this function will check for the cycle in dependency of each and every cell and then its children and so on
 
-        if (response == true) return true;
+        if (response == true) return [i, j];
       }
     }
   }
-  return false;
+  return null;
 }
 
 // Start condition -> make visited and dfsVisited true
