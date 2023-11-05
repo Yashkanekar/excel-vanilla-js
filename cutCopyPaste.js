@@ -16,11 +16,12 @@ for (let i = 0; i < row; i++) {
     rangeStorage = [];
   }
 }
+//console.log()
 
 let copyBtn = document.querySelector(".copy");
 let cutBtn = document.querySelector(".cut");
 let pasteBtn = document.querySelector(".paste");
-console.log(copyBtn);
+// console.log(copyBtn);
 
 function handleSelectedCells(cell) {
   cell.addEventListener("click", (e) => {
